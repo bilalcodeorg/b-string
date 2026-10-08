@@ -10,6 +10,7 @@ add_library(
 	BString STATIC
     src/fmt_helper.cpp
     src/std_str.cpp
+    src/error.cpp
 )
 add_library(bstr::bstr ALIAS BString)
 target_include_directories(BString

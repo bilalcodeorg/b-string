@@ -6,10 +6,11 @@
 namespace bstr { namespace fmt_helper {
 
     std::string format(
-        std::string str, const std::vector<std::string>& str_args
+        std::string str, const std::vector<std::string>& str_args,
+        size_t required_args
     );
 
-    int count_word(const std::string& str, const std::string& word);
+    size_t count_word(const std::string& str, const std::string& word);
 
     // Base case
     inline void parse_args(std::vector<std::string>& str_args) { }
