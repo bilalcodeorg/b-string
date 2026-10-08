@@ -1,22 +1,23 @@
 #pragma once
+#include <bstr/fmt_helper.hpp>
 #include <string>
 #include <vector>
 
 namespace bstr {
+    const std::string target_symbol = "{}";
+
+    // Defination
     template <typename... Args>
-    std::string format(std::string first, Args... args);
-    
+    std::string format(std::string str, Args... args) {
 
-// C++11 support
-// str::fmt_helper
-namespace fmt_helper {
+        std::vector<std::string> str_args;
 
-    template <typename Arg, typename... Args>
-    void parse_args(
-        std::vector<std::string>& str_args, Arg arg, Args... args
-    );
+        // Reserving space for array
+        str_args.reserve(fmt_helper::count_word(str, target_symbol));
+        
+        // Parsing variable arguments
+        fmt_helper::parse_args(str_args, args...);
 
-    int count_word(const std::string& str, const std::string& word);
-
-} // str::fmt_helper
+        return fmt_helper::format(str, str_args);
+    }
 }
