@@ -3,7 +3,7 @@
 #include <vector>
 
 template <typename... Args>
-const std::string bstr::format(std::string str, Args... args) {
+std::string bstr::format(std::string str, Args... args) {
     size_t index = 0;
     size_t arg_index = 0;
     size_t str_values_index = 0;
@@ -16,12 +16,18 @@ const std::string bstr::format(std::string str, Args... args) {
     // Parsing variable arguments
     fmt_helper::parse_args(str_args, args...);
     
-    while (size_t find_index str.find("{}", index) >= 0) {
+    size_t find_index = str.find("{}", index);
+    
+    while (find_index >= 0) {
+        
         formatted_str += str.substr(index, find_index);
         formatted_str += str_args[str_values_index++];
         
+        find_index = str.find("{}", index);
         index = find_index + 2;
     }
+
+    return formatted_str;
 }
 
 template <typename Arg, typename... Args>

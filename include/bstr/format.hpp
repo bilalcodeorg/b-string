@@ -4,14 +4,19 @@
 
 namespace bstr {
     template <typename... Args>
-    const std::string format(std::string first, Args... values);
-}
+    std::string format(std::string first, Args... args);
+    
 
-namespace bstr::fmt_helper {
+// C++11 support
+// str::fmt_helper
+namespace fmt_helper {
+
     template <typename Arg, typename... Args>
     void parse_args(
-        std::vector<std::string>& str_arr, Arg value, Args... values
+        std::vector<std::string>& str_args, Arg arg, Args... args
     );
 
     int count_word(const std::string& str, const std::string& word);
+
+} // str::fmt_helper
 }
