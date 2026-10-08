@@ -8,8 +8,8 @@ project (BString VERSION 1.0 LANGUAGES CXX)
 # Add library
 add_library(
 	BString STATIC
-    src/format.cpp
     src/fmt_helper.cpp
+    src/std_str.cpp
 )
 add_library(bstr::bstr ALIAS BString)
 target_include_directories(BString
